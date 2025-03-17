@@ -21,6 +21,12 @@ const complaintRoutes = require('./complaints/complaintRoutes');
 app.use('/api/users', userRoutes);
 app.use('/api/complaints', complaintRoutes);
 
+// Default Route (Fixes "Cannot GET /" Error)
+app.get('/', (req, res) => {
+  res.send('Welcome to the Backend API!');
+});
+
+
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
